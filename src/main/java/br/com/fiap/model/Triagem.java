@@ -2,19 +2,17 @@ package br.com.fiap.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import io.quarkus.hibernate.orm.panache.PanacheEntity;
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.ManyToOne;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "TRIAGEM")
 public class Triagem extends PanacheEntity {
 
-    @Column(name = "DATA_TRIAGEM", nullable = false)
-    public LocalDate dataTriagem;
+    @Column(name = "DATA_HORA_TRIAGEM", nullable = false)
+    public LocalDateTime dataTriagem;
 
     @ManyToOne
     public Paciente paciente;
@@ -22,6 +20,9 @@ public class Triagem extends PanacheEntity {
     @JsonIgnore
     @ManyToOne
     public Usuario registrouTriagem;
+
+    @OneToOne
+    public Diagnostico diagnostico;
 
     @Column(name = "PROBLEMA_RESPIRATORIO", nullable = false)
     public Boolean problemaRespiratorio;

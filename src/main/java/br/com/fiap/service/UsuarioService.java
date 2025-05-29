@@ -52,7 +52,7 @@ public class UsuarioService {
     @Transactional
     public Usuario save(Usuario usuario){
 
-        //verificaFuncionario(usuario);
+        verificaUsuario(usuario);
 
         Usuario.persist(usuario);
         return usuario;
@@ -61,7 +61,7 @@ public class UsuarioService {
     @Transactional
     public Usuario update(int id, Usuario usuarioNovo){
 
-        //verificaFuncionario(usuarioNovo);
+        verificaUsuario(usuarioNovo);
 
         Usuario usuarioExistente = findById(id);
 
@@ -78,21 +78,21 @@ public class UsuarioService {
         Usuario.deleteById(id);
     }
 
-    private void verificaFuncionario(Usuario usuario){
+    private void verificaUsuario(Usuario usuario){
         if (usuario.nome == null){
-            throw new BadRequestException("O nome do funcionário não pode ser nulo");
+            throw new BadRequestException("O nome do usuário não pode ser nulo");
         }
         else if (usuario.cpf == null){
-            throw new BadRequestException("O cpf do funcionário não pode ser nulo");
+            throw new BadRequestException("O cpf do usuário não pode ser nulo");
         }
         else if (!usuario.cpf.matches("^\\d{11}$")){
-            throw new BadRequestException("O cpf do funcionário deve ter apenas 11 caracteres e apenas números");
+            throw new BadRequestException("O cpf do usuário deve ter apenas 11 caracteres e apenas números");
         }
         else if (!usuario.email.matches("^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\\.[a-zA-Z0-9-.]+$")) {
             throw new BadRequestException("Insira um e-mail válido");
         }
         else if (usuario.senha == null) {
-            throw new BadRequestException("A senha do funcionário não pode ser nulo");
+            throw new BadRequestException("A senha do usuário não pode ser nulo");
         }
     }
 }
