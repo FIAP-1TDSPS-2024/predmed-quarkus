@@ -1,6 +1,7 @@
 package br.com.fiap.model;
 
 import br.com.fiap.Enum.SexoEnum;
+import br.com.fiap.dto.PacienteDTO;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import io.quarkus.hibernate.orm.panache.PanacheEntity;
 import jakarta.persistence.*;
@@ -39,5 +40,14 @@ public class Paciente extends PanacheEntity {
     public Usuario registrouPaciente;
 
     public Paciente() {
+    }
+
+    public Paciente(PacienteDTO pacienteDTO){
+        this.nome = pacienteDTO.nome();
+        this.cpf = pacienteDTO.cpf();
+        this.celular = pacienteDTO.celular();
+        this.email = pacienteDTO.email();
+        this.sexo = pacienteDTO.sexo();
+        this.dataNascimento = LocalDate.now();
     }
 }

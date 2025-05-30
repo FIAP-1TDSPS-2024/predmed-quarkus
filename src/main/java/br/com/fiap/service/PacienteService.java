@@ -31,7 +31,7 @@ public class PacienteService {
 
         //verificaFuncionario(usuario);
 
-        Usuario.persist(paciente);
+        Paciente.persist(paciente);
         return paciente;
     }
 

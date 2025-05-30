@@ -1,5 +1,6 @@
 package br.com.fiap.model;
 
+import br.com.fiap.dto.TriagemDTO;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import io.quarkus.hibernate.orm.panache.PanacheEntity;
 import jakarta.persistence.*;
@@ -11,8 +12,8 @@ import java.time.LocalDateTime;
 @Table(name = "TRIAGEM")
 public class Triagem extends PanacheEntity {
 
-    @Column(name = "DATA_HORA_TRIAGEM", nullable = false)
-    public LocalDateTime dataTriagem;
+    @Column(name = "DATA_TRIAGEM", nullable = false)
+    public LocalDate dataTriagem;
 
     @ManyToOne
     public Paciente paciente;
@@ -83,5 +84,32 @@ public class Triagem extends PanacheEntity {
 
     @Column(name = "HIGIENE_LOCAL_TRABALHO", nullable = true)
     public Boolean higieneLocalTrabalho;
+
+    public Triagem(){}
+
+    public Triagem(TriagemDTO triagemDTO) {
+        this.dataTriagem = LocalDate.now();
+        System.out.println(dataTriagem);
+        this.problemaRespiratorio = triagemDTO.problemaRespiratorio();
+        this.febre = triagemDTO.febre();
+        this.tosseSeca = triagemDTO.tosseSeca();
+        this.dorGarganta = triagemDTO.dorGarganta();
+        this.coriza = triagemDTO.coriza();
+        this.asma = triagemDTO.asma();
+        this.doencaPulmonarCronica = triagemDTO.doencaPulmonarCronica();
+        this.dorCabeca = triagemDTO.dorCabeca();
+        this.doencaCardiaca = triagemDTO.doencaCardiaca();
+        this.diabetes = triagemDTO.diabetes();
+        this.hipertensao = triagemDTO.hipertensao();
+        this.fadiga = triagemDTO.fadiga();
+        this.problemasGastro = triagemDTO.problemasGastro();
+        this.viagemExterior = triagemDTO.viagemExterior();
+        this.contatoInfectado = triagemDTO.contatoInfectado();
+        this.multidao = triagemDTO.multidao();
+        this.localPublico = triagemDTO.localPublico();
+        this.familarLocalPublico = triagemDTO.familarLocalPublico();
+        this.usaMarcara = triagemDTO.usaMarcara();
+        this.higieneLocalTrabalho = triagemDTO.higieneLocalTrabalho();
+    }
 }
 

@@ -1,5 +1,6 @@
 package br.com.fiap.resource;
 
+import br.com.fiap.dto.UsuarioDTO;
 import br.com.fiap.model.Usuario;
 import br.com.fiap.service.UsuarioService;
 import jakarta.enterprise.context.ApplicationScoped;
@@ -40,15 +41,17 @@ public class UsuarioResource {
     }
 
     @POST
-    public Response create(Usuario usuario){
+    public Response create(UsuarioDTO usuarioDTO){
+        Usuario usuario = new Usuario(usuarioDTO);
         Usuario novoUsuario = usuarioService.save(usuario);
-        return Response.created(URI.create("api/funcionarios" + novoUsuario.id)).build();
+        return Response.created(URI.create("api/usuario" + novoUsuario.id)).build();
     }
 
     @PUT
     @Path("/{id}")
-    public Response update(@PathParam("id") int id, Usuario usuarioNovo){
-        Usuario novoUsuario = usuarioService.update(id, usuarioNovo);
+    public Response update(@PathParam("id") int id, UsuarioDTO usuarioDTO){
+        Usuario usuario = new Usuario(usuarioDTO);
+        Usuario novoUsuario = usuarioService.update(id, usuario);
         return Response.ok().build();
     }
 

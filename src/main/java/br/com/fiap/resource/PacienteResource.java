@@ -1,5 +1,6 @@
 package br.com.fiap.resource;
 
+import br.com.fiap.dto.PacienteDTO;
 import br.com.fiap.model.Paciente;
 import br.com.fiap.model.Usuario;
 import br.com.fiap.service.PacienteService;
@@ -42,14 +43,16 @@ public class PacienteResource {
     }
 
     @POST
-    public Response create(Paciente paciente){
+    public Response create(PacienteDTO pacienteDTO){
+        Paciente paciente = new Paciente(pacienteDTO);
         Paciente novoPaciente = pacienteService.save(paciente);
         return Response.created(URI.create("api/funcionarios" + novoPaciente.id)).build();
     }
 
     @PUT
     @Path("/{id}")
-    public Response update(@PathParam("id") int id, Paciente paciente){
+    public Response update(@PathParam("id") int id, PacienteDTO pacienteDTO){
+        Paciente paciente = new Paciente(pacienteDTO);
         Paciente novoPaciente = pacienteService.update(id, paciente);
         return Response.ok().build();
     }

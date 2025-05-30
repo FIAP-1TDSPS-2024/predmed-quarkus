@@ -1,5 +1,6 @@
 package br.com.fiap.model;
 
+import br.com.fiap.dto.UsuarioDTO;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import io.quarkus.hibernate.orm.panache.PanacheEntity;
 import jakarta.persistence.*;
@@ -31,5 +32,12 @@ public class Usuario extends PanacheEntity {
     public List<Paciente> pacientesRegistrados;
 
     public Usuario() {
+    }
+
+    public Usuario(UsuarioDTO usuarioDTO){
+        this.nome = usuarioDTO.nome();
+        this.cpf = usuarioDTO.cpf();
+        this.email = usuarioDTO.email();
+        this.senha = usuarioDTO.senha();
     }
 }
