@@ -14,7 +14,7 @@ import java.util.List;
 public class TriagemService {
 
     public List<Triagem> listAllByIdPaciente(int pacienteId){
-        return Triagem.list("funcionario.id", pacienteId);
+        return Triagem.list("paciente.id", pacienteId);
     }
 
     public Triagem findById(int id){
@@ -26,7 +26,7 @@ public class TriagemService {
     public Triagem save(int idPaciente, Triagem triagem){
 
         triagem.paciente = Paciente.findById(idPaciente);
-
+        System.out.println(triagem.paciente.nome);
         Triagem.persist(triagem);
         return triagem;
     }

@@ -28,7 +28,7 @@ public class TriagemResource {
     TriagemService triagemService;
 
     @GET
-    @Path("/{pacienteId}")
+    @Path("/paciente/{pacienteId}")
     public Response listAll(@PathParam("pacienteId") int pacienteId){
         List<Triagem> triagems = triagemService.listAllByIdPaciente(pacienteId);
 
