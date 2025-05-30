@@ -4,6 +4,7 @@ import br.com.fiap.model.Paciente;
 import br.com.fiap.model.Triagem;
 import br.com.fiap.model.Usuario;
 import jakarta.enterprise.context.ApplicationScoped;
+import jakarta.inject.Inject;
 import jakarta.persistence.Column;
 import jakarta.transaction.Transactional;
 import jakarta.ws.rs.NotFoundException;
@@ -25,7 +26,7 @@ public class TriagemService {
     @Transactional
     public Triagem save(int idPaciente, Triagem triagem){
 
-        triagem.paciente = Paciente.findById(idPaciente);
+        triagem.paciente = (Paciente) Paciente.findByIdOptional(idPaciente).orElseThrow(() -> new NotFoundException("Paciente não foi encontrado"));
         System.out.println(triagem.paciente.nome);
         Triagem.persist(triagem);
         return triagem;

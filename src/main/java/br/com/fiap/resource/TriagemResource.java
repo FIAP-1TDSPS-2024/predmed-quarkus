@@ -49,7 +49,7 @@ public class TriagemResource {
 
     @POST
     @Path("/{pacienteId}")
-    public Response create(@PathParam("funcionarioId") int pacienteId, TriagemDTO triagemDTO){
+    public Response create(@PathParam("pacienteId") int pacienteId, TriagemDTO triagemDTO){
         Triagem triagem = new Triagem(triagemDTO);
         Triagem novaTriagem = triagemService.save(pacienteId, triagem);
         return Response.created(URI.create("api/usuario" + triagem.id)).build();
