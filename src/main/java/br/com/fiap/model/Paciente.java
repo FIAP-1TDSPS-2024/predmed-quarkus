@@ -48,6 +48,6 @@ public class Paciente extends PanacheEntity {
         this.celular = pacienteDTO.celular();
         this.email = pacienteDTO.email();
         this.sexo = pacienteDTO.sexo();
-        this.dataNascimento = LocalDate.now();
+        this.dataNascimento = pacienteDTO.dataNascimento();
     }
 }
