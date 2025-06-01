@@ -1,22 +1,46 @@
 package br.com.fiap.service;
 
-import br.com.fiap.dto.LoginFuncionarioDTO;
-import br.com.fiap.exception.AcessoNegadoexception;
+import br.com.fiap.dto.LoginUsuarioDTO;
 import br.com.fiap.exception.LoginInvalidoException;
 import br.com.fiap.model.Usuario;
-import br.com.fiap.singleton.LoginSingleton;
+import br.com.fiap.utils.KeyUtils;
 import io.quarkus.panache.common.Parameters;
+import io.smallrye.jwt.auth.principal.JWTParser;
+import io.smallrye.jwt.auth.principal.ParseException;
+import io.smallrye.jwt.build.Jwt;
 import jakarta.enterprise.context.ApplicationScoped;
+import jakarta.inject.Inject;
 import jakarta.transaction.Transactional;
 import jakarta.ws.rs.BadRequestException;
 import jakarta.ws.rs.NotFoundException;
 
+import java.security.PrivateKey;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @ApplicationScoped
 public class UsuarioService {
 
-    public Usuario login(LoginFuncionarioDTO login){
+    // Injetar parser para validar token
+    @Inject
+    JWTParser jwtParser;
+
+    // Aqui você pode carregar a private key de forma segura (variável ambiente, cofre, etc)
+    private PrivateKey privateKey = KeyUtils.loadPrivateKeyFromEnv();
+
+    public String generateToken(Usuario usuario) {
+        // Duração do token em segundos (ex: 1 hora)
+        long duration = 3600;
+
+        return Jwt.issuer("http://localhost:8080")
+                .upn(usuario.nome)
+                .groups(usuario.cargo)
+                .expiresAt(System.currentTimeMillis() / 1000 + duration)
+                .sign(privateKey);
+    }
+
+    public String login(LoginUsuarioDTO login){
 
         if ((login.emailFuncionario() != null) && (!login.senhaFuncionario().isEmpty())){
             Usuario usuarioLogado = Usuario.find("email = :email and senha = :senha",
@@ -25,18 +49,14 @@ public class UsuarioService {
             if (usuarioLogado == null) {
                 throw new LoginInvalidoException("Email ou senha inválidos.");
             }
-
-            LoginSingleton.login(usuarioLogado);
-
-            return usuarioLogado;
+            else{
+                String token = generateToken(usuarioLogado);
+                return token;
+            }
         }
         else {
             throw new LoginInvalidoException("Campos de login não podem estar vazios.");
         }
-    }
-
-    public void logoff(){
-        LoginSingleton.logoff();
     }
 
     public List<Usuario> listAll(){

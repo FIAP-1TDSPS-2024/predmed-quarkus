@@ -6,6 +6,7 @@ import br.com.fiap.model.Triagem;
 import br.com.fiap.model.Usuario;
 import br.com.fiap.service.TriagemService;
 import br.com.fiap.service.UsuarioService;
+import jakarta.annotation.security.RolesAllowed;
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.inject.Inject;
 import jakarta.ws.rs.*;
@@ -16,6 +17,7 @@ import java.net.URI;
 import java.util.List;
 
 @Path("api/triagem")
+@RolesAllowed({"admin", "user"})
 @Produces(MediaType.APPLICATION_JSON)
 @Consumes(MediaType.APPLICATION_JSON)
 @ApplicationScoped

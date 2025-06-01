@@ -25,7 +25,7 @@ public class GlobalExceptionHandler implements ExceptionMapper<Throwable> {
             titulo = "Erro de validação";
         }
         else if (ex instanceof AcessoNegadoexception) {
-            statusCode = 403;
+            statusCode = 401;
             titulo = "Acesso Negado";
         }
         else if (ex instanceof BadRequestException) {

@@ -1,11 +1,6 @@
 package br.com.fiap.service;
 
-import br.com.fiap.dto.LoginFuncionarioDTO;
-import br.com.fiap.exception.LoginInvalidoException;
 import br.com.fiap.model.Paciente;
-import br.com.fiap.model.Usuario;
-import br.com.fiap.singleton.LoginSingleton;
-import io.quarkus.panache.common.Parameters;
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.transaction.Transactional;
 import jakarta.ws.rs.BadRequestException;

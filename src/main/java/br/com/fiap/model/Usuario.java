@@ -23,6 +23,9 @@ public class Usuario extends PanacheEntity {
     @Column(name = "SENHA", nullable = false, length = 40)
     public String senha;
 
+    @Column(name = "CARGO", nullable = false, length = 20)
+    public String cargo;
+
     @JsonIgnore
     @OneToMany(mappedBy = "registrouTriagem")
     public List<Triagem> registrosTriagem;
@@ -39,5 +42,6 @@ public class Usuario extends PanacheEntity {
         this.cpf = usuarioDTO.cpf();
         this.email = usuarioDTO.email();
         this.senha = usuarioDTO.senha();
+        this.cargo = usuarioDTO.cargo();
     }
 }

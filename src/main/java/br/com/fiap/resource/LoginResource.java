@@ -1,8 +1,10 @@
 package br.com.fiap.resource;
 
-import br.com.fiap.dto.LoginFuncionarioDTO;
+import br.com.fiap.dto.LoginUsuarioDTO;
+import br.com.fiap.dto.TokenDTO;
 import br.com.fiap.model.Usuario;
 import br.com.fiap.service.UsuarioService;
+import io.smallrye.jwt.build.Jwt;
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.inject.Inject;
 import jakarta.ws.rs.*;
@@ -19,18 +21,8 @@ public class LoginResource {
     UsuarioService usuarioService;
 
     @GET
-    public Response login(LoginFuncionarioDTO login){
-        Usuario usuarioLogado = usuarioService.login(login);
-        return Response.ok(usuarioLogado).build();
+    public Response login(LoginUsuarioDTO login){
+        String token = usuarioService.login(login);
+        return Response.ok(new TokenDTO(token)).build();
     }
-
-    @GET
-    @Path("/exit")
-    public Response logoff(){
-        usuarioService.logoff();
-        return Response.ok().build();
-    }
-
-
-
 }

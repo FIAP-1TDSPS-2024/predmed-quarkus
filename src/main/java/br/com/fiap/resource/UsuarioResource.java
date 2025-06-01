@@ -3,6 +3,8 @@ package br.com.fiap.resource;
 import br.com.fiap.dto.UsuarioDTO;
 import br.com.fiap.model.Usuario;
 import br.com.fiap.service.UsuarioService;
+import io.quarkus.security.Authenticated;
+import jakarta.annotation.security.RolesAllowed;
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.inject.Inject;
 import jakarta.ws.rs.*;
@@ -13,6 +15,7 @@ import java.net.URI;
 import java.util.List;
 
 @Path("api/usuarios")
+@RolesAllowed("admin")
 @Produces(MediaType.APPLICATION_JSON)
 @Consumes(MediaType.APPLICATION_JSON)
 @ApplicationScoped

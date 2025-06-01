@@ -5,6 +5,7 @@ import br.com.fiap.model.Paciente;
 import br.com.fiap.model.Usuario;
 import br.com.fiap.service.PacienteService;
 import br.com.fiap.service.UsuarioService;
+import jakarta.annotation.security.RolesAllowed;
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.inject.Inject;
 import jakarta.ws.rs.*;
@@ -15,6 +16,7 @@ import java.net.URI;
 import java.util.List;
 
 @Path("api/pacientes")
+@RolesAllowed({"admin", "user"})
 @Produces(MediaType.APPLICATION_JSON)
 @Consumes(MediaType.APPLICATION_JSON)
 @ApplicationScoped
