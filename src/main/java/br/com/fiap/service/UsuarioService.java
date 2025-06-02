@@ -33,7 +33,7 @@ public class UsuarioService {
         // Duração do token em segundos (ex: 1 hora)
         long duration = 3600;
 
-        return Jwt.issuer("https://stuck-grace-jonasdasneves-cf0ea109.koyeb.app")
+        return Jwt.issuer("https://stuck-grace-jonasdasneves.koyeb.app/")
                 .upn(usuario.nome)
                 .groups(usuario.cargo)
                 .expiresAt(System.currentTimeMillis() / 1000 + duration)
