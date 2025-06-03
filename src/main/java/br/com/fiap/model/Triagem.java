@@ -1,10 +1,14 @@
 package br.com.fiap.model;
 
 import br.com.fiap.dto.TriagemDTO;
+import br.com.fiap.dto.TriagemRequestDTO;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import io.quarkus.hibernate.orm.panache.PanacheEntity;
 import jakarta.persistence.*;
 
+import java.lang.reflect.Field;
+import java.lang.reflect.Method;
+import java.lang.reflect.RecordComponent;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 
@@ -79,12 +83,6 @@ public class Triagem extends PanacheEntity {
     @Column(name = "FAMILIAR_LOCAL_PUBLICO", nullable = true)
     public Boolean familarLocalPublico;
 
-    @Column(name = "USA_MARCAR", nullable = true)
-    public Boolean usaMarcara;
-
-    @Column(name = "HIGIENE_LOCAL_TRABALHO", nullable = true)
-    public Boolean higieneLocalTrabalho;
-
     public Triagem(){}
 
     public Triagem(TriagemDTO triagemDTO) {
@@ -108,8 +106,6 @@ public class Triagem extends PanacheEntity {
         this.multidao = triagemDTO.multidao();
         this.localPublico = triagemDTO.localPublico();
         this.familarLocalPublico = triagemDTO.familarLocalPublico();
-        this.usaMarcara = triagemDTO.usaMarcara();
-        this.higieneLocalTrabalho = triagemDTO.higieneLocalTrabalho();
     }
 }
 

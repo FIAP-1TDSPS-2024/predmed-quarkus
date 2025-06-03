@@ -18,7 +18,5 @@ public record TriagemDTO (
         Boolean contatoInfectado,
         Boolean multidao,
         Boolean localPublico,
-        Boolean familarLocalPublico,
-        Boolean usaMarcara,
-        Boolean higieneLocalTrabalho
+        Boolean familarLocalPublico
 ){}

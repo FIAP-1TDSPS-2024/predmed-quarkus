@@ -50,8 +50,6 @@ public class TriagemService {
         triagemExistente.multidao = novaTriagem.multidao;
         triagemExistente.localPublico = novaTriagem.localPublico;
         triagemExistente.familarLocalPublico = novaTriagem.familarLocalPublico;
-        triagemExistente.usaMarcara = novaTriagem.usaMarcara;
-        triagemExistente.higieneLocalTrabalho = novaTriagem.higieneLocalTrabalho;
 
         return triagemExistente;
     }
