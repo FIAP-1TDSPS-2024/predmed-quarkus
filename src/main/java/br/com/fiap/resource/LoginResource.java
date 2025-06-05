@@ -20,8 +20,8 @@ public class LoginResource {
     @Inject
     UsuarioService usuarioService;
 
-    @GET
-    public Response login(LoginUsuarioDTO login){
+    @POST
+    public Response login(LoginUsuarioDTO login) {
         String token = usuarioService.login(login);
         return Response.ok(new TokenDTO(token)).build();
     }
