@@ -93,7 +93,7 @@ public class DiagnosticoService {
             Triagem.persist(triagem);
         }
         else{
-            System.out.println("Erro na requisição");
+            throw new NotFoundException("Erro na chamada de diagnostico");
         }
 
         return diagnostico;
