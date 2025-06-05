@@ -33,8 +33,6 @@ public class PacienteService {
     @Transactional
     public Paciente update(int id, Paciente novoPaciente){
 
-        //verificaFuncionario(usuarioNovo);
-
         Paciente pacienteExistente = findById(id);
 
         pacienteExistente.nome = novoPaciente.nome;

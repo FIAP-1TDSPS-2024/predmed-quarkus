@@ -1,11 +1,9 @@
 package br.com.fiap.model;
 
 import br.com.fiap.dto.DiagnosticoDTO;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import io.quarkus.hibernate.orm.panache.PanacheEntity;
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.OneToOne;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -14,7 +12,8 @@ import java.time.LocalDateTime;
 @Table(name = "DIAGNOSTICO")
 public class Diagnostico extends PanacheEntity {
 
-    @OneToOne
+    @OneToOne(mappedBy = "diagnostico")
+    @JsonIgnore
     public Triagem triagem;
 
     @Column(name = "PROVAVEL_COVID", nullable = false)
@@ -25,8 +24,8 @@ public class Diagnostico extends PanacheEntity {
 
     public Diagnostico() {}
 
-    public Diagnostico(DiagnosticoDTO diagnosticoDTO, Triagem triagem) {
-        this.triagem = triagem;
+    public Diagnostico(DiagnosticoDTO diagnosticoDTO) {
+
         this.dataDiagnostico = LocalDateTime.now();
 
         if (diagnosticoDTO.previsao() == 1){

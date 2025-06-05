@@ -40,6 +40,7 @@ public class DiagnosticoService {
         return diagnostico;
     }
 
+    @Transactional
     public Diagnostico gerarDiagnostico(int triagemId){
 
         DiagnosticoDTO diagnosticoDTO = null;
@@ -85,8 +86,11 @@ public class DiagnosticoService {
             }
 
             diagnosticoDTO = gson.fromJson(result, DiagnosticoDTO.class);
-            diagnostico = new Diagnostico(diagnosticoDTO, triagem);
-            save(diagnostico);
+            diagnostico = new Diagnostico(diagnosticoDTO);
+            triagem.diagnostico = diagnostico;
+            diagnostico.triagem = triagem;
+
+            Triagem.persist(triagem);
         }
         else{
             System.out.println("Erro na requisição");

@@ -26,7 +26,8 @@ public class Triagem extends PanacheEntity {
     @ManyToOne
     public Usuario registrouTriagem;
 
-    @OneToOne
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "diagnostico_id", referencedColumnName = "id")
     public Diagnostico diagnostico;
 
     @Column(name = "PROBLEMA_RESPIRATORIO", nullable = false)

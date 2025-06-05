@@ -37,6 +37,7 @@ public class TriagemService {
 
         Triagem triagemExistente = findById(id);
 
+        triagemExistente.diagnostico = novaTriagem.diagnostico;
         triagemExistente.asma = novaTriagem.asma;
         triagemExistente.doencaPulmonarCronica = novaTriagem.doencaPulmonarCronica;
         triagemExistente.dorCabeca = novaTriagem.dorCabeca;
