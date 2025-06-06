@@ -25,7 +25,6 @@ public class TriagemService {
 
     @Transactional
     public Triagem save(int idPaciente, Triagem triagem){
-
         triagem.paciente = (Paciente) Paciente.findByIdOptional(idPaciente).orElseThrow(() -> new NotFoundException("Paciente não foi encontrado"));
         System.out.println(triagem.paciente.nome);
         Triagem.persist(triagem);
