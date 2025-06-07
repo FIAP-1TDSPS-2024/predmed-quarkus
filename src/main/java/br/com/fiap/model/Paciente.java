@@ -33,7 +33,7 @@ public class Paciente extends PanacheEntity {
     public LocalDate dataNascimento;
 
     @JsonIgnore
-    @OneToMany(mappedBy = "paciente")
+    @OneToMany(mappedBy = "paciente", cascade = CascadeType.ALL, orphanRemoval = true)
     public List<Triagem> triagems;
 
     @ManyToOne

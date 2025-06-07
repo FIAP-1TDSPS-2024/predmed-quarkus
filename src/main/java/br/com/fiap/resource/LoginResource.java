@@ -2,9 +2,7 @@ package br.com.fiap.resource;
 
 import br.com.fiap.dto.LoginUsuarioDTO;
 import br.com.fiap.dto.TokenDTO;
-import br.com.fiap.model.Usuario;
 import br.com.fiap.service.UsuarioService;
-import io.smallrye.jwt.build.Jwt;
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.inject.Inject;
 import jakarta.ws.rs.*;
