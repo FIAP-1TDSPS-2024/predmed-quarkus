@@ -20,7 +20,7 @@ Seu objetivo é fornecer uma base moderna, performática e extensível para solu
 A API está disponível em:
 
 ```
-https://predmed-quarkus-01.koyeb.app/
+https://predmed-quarkus-01-8e46d0e5271b.herokuapp.com/
 ```
 
 ---
