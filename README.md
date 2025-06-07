@@ -1,74 +1,81 @@
-# predmed
+# PredMed - API Quarkus para Triagem e Diagnóstico Médico
 
-This project uses Quarkus, the Supersonic Subatomic Java Framework.
+[![Build](https://img.shields.io/badge/build-passing-brightgreen)](https://maven.apache.org/)
+[![Quarkus](https://img.shields.io/badge/quarkus-3.23.0-blue)](https://quarkus.io/)
 
-If you want to learn more about Quarkus, please visit its website: <https://quarkus.io/>.
+## 🩺 Sobre o Projeto
 
-## Running the application in dev mode
+**PredMed** é uma API desenvolvida com [Quarkus](https://quarkus.io/) voltada para:
 
-You can run your application in dev mode that enables live coding using:
+- **Triagem manual** de pacientes  
+- **Diagnóstico médico assistido por IA**  
+- **Gerenciamento seguro de usuários e permissões**
 
-```shell script
+Seu objetivo é fornecer uma base moderna, performática e extensível para soluções médicas baseadas em dados e inteligência artificial.
+
+---
+
+## 🌐 API em Produção
+
+A API está disponível em:
+
+```
+https://predmed-quarkus-01.koyeb.app/
+```
+
+---
+
+## ⚙️ Tecnologias e Dependências
+
+- **Quarkus 3.23.0**
+- **JWT (Autenticação)**
+- **Hibernate ORM com Panache**
+- **Oracle JDBC**
+- **RESTEasy com Jackson**
+- **Apache HttpClient**
+- **Gson para JSON**
+
+Veja o `pom.xml` completo [aqui](https://github.com/FIAP-1TDSPS-2024/predmed-quarkus/blob/main/pom.xml).
+
+---
+
+## 🚀 Como Executar Localmente
+
+### Pré-requisitos
+
+- JDK 18+  
+- Maven 3.9+  
+- Banco Oracle configurado (ou container)
+
+### Passos
+
+```bash
+# Clone o repositório
+git clone https://github.com/FIAP-1TDSPS-2024/predmed-quarkus.git
+cd predmed-quarkus
+
+# Executar em modo dev
 ./mvnw quarkus:dev
 ```
 
-> **_NOTE:_**  Quarkus now ships with a Dev UI, which is available in dev mode only at <http://localhost:8080/q/dev/>.
+A API local ficará disponível em `http://localhost:8080`.
 
-## Packaging and running the application
+> ⚠️ **Importante:** para que o JWT seja aceito ao rodar a aplicação localmente, é necessário alterar o valor de `issuer` na configuração de segurança do projeto para `http://localhost:8080`. Caso contrário, a geração e validação do token não funcionarão corretamente.
 
-The application can be packaged using:
+---
 
-```shell script
-./mvnw package
+## 🔐 Autenticação
+
+A autenticação é baseada em JWT. Envie o token no cabeçalho `Authorization`:
+
+```
+Authorization: Bearer <seu_token_jwt>
 ```
 
-It produces the `quarkus-run.jar` file in the `target/quarkus-app/` directory.
-Be aware that it’s not an _über-jar_ as the dependencies are copied into the `target/quarkus-app/lib/` directory.
+---
 
-The application is now runnable using `java -jar target/quarkus-app/quarkus-run.jar`.
+## 📂 Estrutura do Projeto
 
-If you want to build an _über-jar_, execute the following command:
-
-```shell script
-./mvnw package -Dquarkus.package.jar.type=uber-jar
-```
-
-The application, packaged as an _über-jar_, is now runnable using `java -jar target/*-runner.jar`.
-
-## Creating a native executable
-
-You can create a native executable using:
-
-```shell script
-./mvnw package -Dnative
-```
-
-Or, if you don't have GraalVM installed, you can run the native executable build in a container using:
-
-```shell script
-./mvnw package -Dnative -Dquarkus.native.container-build=true
-```
-
-You can then execute your native executable with: `./target/predmed-1.0.0-SNAPSHOT-runner`
-
-If you want to learn more about building native executables, please consult <https://quarkus.io/guides/maven-tooling>.
-
-## Related Guides
-
-- REST resources for Hibernate ORM with Panache ([guide](https://quarkus.io/guides/rest-data-panache)): Generate Jakarta REST resources for your Hibernate Panache entities and repositories
-- JDBC Driver - Oracle ([guide](https://quarkus.io/guides/datasource)): Connect to the Oracle database via JDBC
-
-## Provided Code
-
-### REST Data with Panache
-
-Generating Jakarta REST resources with Panache
-
-[Related guide section...](https://quarkus.io/guides/rest-data-panache)
-
-
-### RESTEasy JAX-RS
-
-Easily start your RESTful Web Services
-
-[Related guide section...](https://quarkus.io/guides/getting-started#the-jax-rs-resources)
+- `src/main/java`: código principal da aplicação  
+- `src/test/java`: testes unitários e de integração  
+- `resources/META-INF`: configurações de segurança, JWT, roles etc.
