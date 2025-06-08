@@ -37,27 +37,6 @@ Seu objetivo é fornecer uma base moderna, performática e extensível para solu
 
 ---
 
-&nbsp;
-
-## 🧪 Estrutura do Projeto
-
-- `/src/app` — Páginas da aplicação
-  - `/home` — Dashboard principal
-  - `/paciente` — Gestão de pacientes
-  - `/paciente/[id]` — Detalhes do paciente
-  - `/paciente/[id]/triagem` — Triagem do paciente
-  - `/paciente/cadastrar` — Cadastro de paciente
-- `/src/components` — Componentes reutilizáveis
-  - `/auth` — Componentes de autenticação
-  - `/common` — Componentes comuns (Header, Footer)
-  - `/pacient` — Componentes relacionados ao paciente
-  - `/triage` — Componentes relacionados à triagem
-- `/src/services` — Serviços de API
-- `/src/types` — Interfaces TypeScript
-- `/public` — Ativos estáticos
-
----
-
 ## ⚙️ Tecnologias e Dependências
 
 - **Quarkus 3.23.0**
