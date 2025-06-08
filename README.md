@@ -21,6 +21,14 @@ Seu objetivo é fornecer uma base moderna, performática e extensível para solu
 
 - **POST /api/login** — Autenticação de usuários com JWT
 
+### Usuarios
+
+- **GET /api/usuarios** — Listar todos os usuarios
+- **GET /api/usuarios/{id}** — Buscar usuario por ID
+- **POST /api/usuarios** — Cadastrar novo usuario
+- **PUT /api/usuarios/{id}** — Atualizar dados do usuario
+- **DELETE /api/usuarios/{id}** — Excluir usuario
+
 ### Pacientes
 
 - **GET /api/pacientes** — Listar todos os pacientes
@@ -30,9 +38,15 @@ Seu objetivo é fornecer uma base moderna, performática e extensível para solu
 - **DELETE /api/pacientes/{id}** — Excluir paciente
 
 ### Triagem
-
+- **GET /api/triagem/{id}** - Buscar triagem por id
 - **GET /api/triagem/paciente/{id}** — Listar triagens de um paciente
 - **POST /api/triagem/{pacienteId}** — Criar nova triagem para paciente
+- **PUT /api/pacientes/{id}** — Atualizar dados da triagem
+- **DELETE /api/pacientes/{id}** — Excluir triagem 
+
+### Diagnóstico
+  
+- **GET /api/diagnostico/{id}** — Buscar diagnostico por id
 - **POST /api/diagnostico/{triagemId}** — Gerar diagnóstico para triagem
 
 ---
